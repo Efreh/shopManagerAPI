@@ -28,7 +28,10 @@ public class ShopUserService implements ShopUserInterface {
 
     @Override
     public Optional<ShopUser> getUserById(Long id) {
-        return shopUserRepository.findById(id);
+        Optional<ShopUser> userFromRepository = shopUserRepository.findById(id);
+        if (userFromRepository.isEmpty()) {
+            throw new UserNotFoundException("Пользователь с id " + id + " не найден");
+        } else return userFromRepository;
     }
 
     @Override

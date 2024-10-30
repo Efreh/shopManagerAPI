@@ -31,7 +31,7 @@ public class ShopUserController {
     @GetMapping("/{id}")
     @JsonView(ShopUser.DetailView.class)
     public ShopUser getUserById(@PathVariable Long id) {
-        return userService.getUserById(id).orElseThrow(() -> new UserNotFoundException("Пользователь с id " + id + " не найден"));
+        return userService.getUserById(id).get();
     }
 
     @PostMapping
